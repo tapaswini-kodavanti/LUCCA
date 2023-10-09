@@ -1,9 +1,9 @@
 import os
+os.environ["OPENAI_API_KEY"]="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"
+
 from langchain.llms import OpenAI
 from langchain.chains import ConversationChain
-from langchain.memory import ConversationBufferMemory
-
-os.environ["OPENAI_API_KEY"]="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"
+from memory_module import memory
 
 # first initialize the large language model
 llm = OpenAI(
@@ -28,7 +28,7 @@ conversation = ConversationChain(
     prompt=PROMPT,
     llm=llm,
     verbose=True,
-    memory=ConversationBufferMemory(ai_prefix="Dobby"),
+    memory=memory,
 )
 
 def main():

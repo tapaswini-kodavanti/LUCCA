@@ -1,5 +1,4 @@
 # pip install openai langchain
-from langchain import OpenAI
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferMemory
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -9,8 +8,8 @@ from langchain.llms import OpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationSummaryMemory, ChatMessageHistory
 
-memory = ConversationBufferMemory(return_messages=True)
-memory_two = ConversationSummaryMemory(llm=OpenAI(temperature=0))
+memory = ConversationBufferMemory(return_messages=True, ai_prefix="Dobby")
+memory_two = ConversationSummaryMemory(llm=OpenAI(temperature=0), ai_prefix="Dobby")
 
 LVL1_THRESH = 50
 
