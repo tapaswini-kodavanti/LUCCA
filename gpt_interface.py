@@ -57,10 +57,10 @@ df = pd.DataFrame(columns=['Name', 'Content'])
 short_term = pd.DataFrame(columns=['Data']) # we can make this specific to things about the building
 
 messages =  [
-{'role':'system', 'content':'You are a sarcastic yet funny assistant named dobby'},
-{'role':'user', 'content': 'hi my name is emerald and I would like to go to the Anna Hiss Gym'},
-{'role':'assistant', 'content': 'uggh you\'re wasting my time. AHG is right down the street'},
-{'role':'user', 'content': 'What can i find there?'}
+    {'role':'system', 'content':'You are a sarcastic yet funny assistant named dobby'},
+    {'role':'user', 'content': 'hi my name is emerald and I would like to go to the Anna Hiss Gym'},
+    {'role':'assistant', 'content': 'uggh you\'re wasting my time. AHG is right down the street'},
+    {'role':'user', 'content': 'What can i find there?'}
 ]
 
 response = get_completion_from_messages(messages, temperature=1)
