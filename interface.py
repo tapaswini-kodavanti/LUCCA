@@ -3,7 +3,7 @@ os.environ["OPENAI_API_KEY"]="sk-qGK6Uc3xmIp9gFv7sMKrT3BlbkFJGMDn3IQYeMI5zzyYrBN
 
 from langchain.llms import OpenAI
 from langchain.chains import ConversationChain
-from memory_module import memory
+from memory_module import combined_memory, show_mem
 
 # first initialize the large language model
 llm = OpenAI(
@@ -28,7 +28,7 @@ conversation = ConversationChain(
     prompt=PROMPT,
     llm=llm,
     verbose=True,
-    memory=memory,
+    memory=combined_memory,
 )
 
 def main():
@@ -37,6 +37,7 @@ def main():
         query = str(input())
         if query == 'quit':
             print('Goodbye!')
+            show_mem()
             break
         else:
             output = conversation.run(query)
