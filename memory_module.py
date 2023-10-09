@@ -25,6 +25,9 @@ def manage_mem():
   for i in range(0, len(history), 2): #assumes input and output go one after the other
     memory_two.save_context({'input': history[i].content}, {'outputs': history[i+1].content})
 
+def clear():
+  memory.clear()
+  memory_two.clear()
 
 memory.load_memory_variables({})['history']
 # memory.load_memory_variables({})['history'][0].content
