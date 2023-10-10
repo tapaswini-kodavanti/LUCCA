@@ -28,7 +28,7 @@ conversation = ConversationChain(
     prompt=PROMPT,
     llm=llm,
     verbose=True,
-    memory=memory,
+    memory=combined_memory,
 )
 
 def main():
@@ -38,8 +38,6 @@ def main():
         query = str(input())
         if query == 'quit':
             print('Goodbye!')
-            # Save memory...
-            save(conversation.memory)
             break
         else:
             output = conversation.run(query)

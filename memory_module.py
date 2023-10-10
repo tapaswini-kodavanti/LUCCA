@@ -1,6 +1,6 @@
 # pip install openai langchain
 from langchain.chains import ConversationChain
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferMemory, ConversationSummaryMemory, ChatMessageHistory, CombinedMemory
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.text_splitter import CharacterTextSplitter
@@ -19,6 +19,7 @@ if memory_exists:
 else:
   memory = ConversationBufferMemory(return_messages=True, ai_prefix="Dobby")
 memory_two = ConversationSummaryMemory(llm=OpenAI(temperature=0), ai_prefix="Dobby")
+combined_memory = CombinedMemory(memories=[memory, memory_two]) # make custom class to choose the best and make memory queries
 
 LVL1_THRESH = 50
 
@@ -45,9 +46,10 @@ def clear():
   memory.clear()
   memory_two.clear()
 
-memory.load_memory_variables({})['history']
 # memory.load_memory_variables({})['history'][0].content
 
+def show_mem():
+  print(memory.load_memory_variables({})['history'])
 
 
 # grouping
