@@ -3,7 +3,7 @@ os.environ["OPENAI_API_KEY"]="sk-qGK6Uc3xmIp9gFv7sMKrT3BlbkFJGMDn3IQYeMI5zzyYrBN
 
 from langchain.llms import OpenAI
 from langchain.chains import ConversationChain
-from memory_module import combined_memory, show_mem
+from memory_module import *
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from fact_retrieval import vectorstore
@@ -48,12 +48,12 @@ qa = ConversationalRetrievalChain.from_llm(llm, vectorstore.as_retriever(), cond
 chat_history = []
 
 def main():
+    print(memory_exists)
     while (True):
         # put this in loop
         query = str(input())
         if query == 'quit':
             print('Goodbye!')
-            show_mem()
             break
         else:
             # output = conversation.run(query)
