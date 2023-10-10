@@ -3,7 +3,7 @@ os.environ["OPENAI_API_KEY"]="sk-qGK6Uc3xmIp9gFv7sMKrT3BlbkFJGMDn3IQYeMI5zzyYrBN
 
 from langchain.llms import OpenAI
 from langchain.chains import ConversationChain
-from memory_module import memory
+from memory_module import *
 
 # first initialize the large language model
 llm = OpenAI(
@@ -32,11 +32,14 @@ conversation = ConversationChain(
 )
 
 def main():
+    print(memory_exists)
     while (True):
         # put this in loop
         query = str(input())
         if query == 'quit':
             print('Goodbye!')
+            # Save memory...
+            save(conversation.memory)
             break
         else:
             output = conversation.run(query)
