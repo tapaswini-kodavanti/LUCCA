@@ -1,14 +1,9 @@
 # pip install openai langchain
-from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferMemory, ConversationSummaryMemory, ChatMessageHistory, CombinedMemory
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
-from langchain.text_splitter import CharacterTextSplitter
 from langchain.llms import OpenAI
-from langchain.chains import ConversationalRetrievalChain
 
-memory = ConversationBufferMemory(return_messages=True, ai_prefix="Dobby")
-memory_two = ConversationSummaryMemory(llm=OpenAI(temperature=0), ai_prefix="Dobby")
+memory = ConversationBufferMemory(return_messages=True, memory_key="recent_history",input_key="input", ai_prefix="Dobby")
+memory_two = ConversationSummaryMemory(llm=OpenAI(temperature=0), input_key="input", ai_prefix="Dobby")
 combined_memory = CombinedMemory(memories=[memory, memory_two]) # make custom class to choose the best and make memory queries
 
 LVL1_THRESH = 50
