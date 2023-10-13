@@ -15,7 +15,7 @@ if memory_exists:
 else:
   memory = ConversationBufferMemory(return_messages=True, ai_prefix="Dobby")
 memory_two = ConversationSummaryMemory(llm=OpenAI(temperature=0), ai_prefix="Dobby")
-combined_memory = CombinedMemory(memories=[memory, memory_two]) # make custom class to choose the best and make memory queries
+# combined_memory = CombinedMemory(memories=[memory, memory_two]) # make custom class to choose the best and make memory queries
 
 LVL1_THRESH = 50
 

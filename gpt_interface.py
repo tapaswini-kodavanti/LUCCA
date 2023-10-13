@@ -40,7 +40,7 @@ def get_completion_from_messages(messages, model=model, temperature=0, max_token
 
 
 def get_response(prompt, model=model, max_tokens=150):
-    response = openai.Completion.create(
+    response = openai.ChatCompletion.create(
         engine=model, #or "your_chosen_engine",
         prompt=prompt,
         max_tokens=max_tokens,
@@ -53,18 +53,9 @@ def get_response(prompt, model=model, max_tokens=150):
 
 
 # create dataframe
-df = pd.DataFrame(columns=['Name', 'Content'])
-short_term = pd.DataFrame(columns=['Data']) # we can make this specific to things about the building
+# df = pd.DataFrame(columns=['Name', 'Content'])
+# short_term = pd.DataFrame(columns=['Data']) # we can make this specific to things about the building
 
-messages =  [
-    {'role':'system', 'content':'You are a sarcastic yet funny assistant named dobby'},
-    {'role':'user', 'content': 'hi my name is emerald and I would like to go to the Anna Hiss Gym'},
-    {'role':'assistant', 'content': 'uggh you\'re wasting my time. AHG is right down the street'},
-    {'role':'user', 'content': 'What can i find there?'}
-]
-
-response = get_completion_from_messages(messages, temperature=1)
-print(response)
 #this can sit in a loop
 # store info from prompt -> pull from memory -> generate action -> store in mem
 
@@ -81,9 +72,3 @@ def get_system_message(message):
 def get_user_message(message):
     return get_message(message, 'user')
 
-
-messages.append(get_system_message(response))
-messages.append(get_user_message("I see. What are the directions to getting there?"))
-print(messages)
-response = get_completion_from_messages(messages, temperature=1)
-print(response)
