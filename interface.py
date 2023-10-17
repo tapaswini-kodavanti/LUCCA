@@ -7,9 +7,9 @@ from memory_module import *
 
 # first initialize the large language model
 llm = OpenAI(
-	temperature=0,
-	openai_api_key="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",
-	model_name="text-davinci-003"
+    temperature=0,
+    openai_api_key="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",
+    model_name="text-davinci-003"
 )
 
 # take an input
@@ -28,21 +28,39 @@ conversation = ConversationChain(
     prompt=PROMPT,
     llm=llm,
     verbose=True,
-    memory=combined_memory,
+    memory=memory,
 )
 
 def main():
-    print(memory_exists)
+    name_found = False
+    name = ""
     while (True):
         # put this in loop
         query = str(input())
+
         if query == 'quit':
             print('Goodbye!')
+            # Save memory...
+            save(conversation.memory, name)
             break
         else:
+            # Load in the memory file associated with the person if this is the conversation start
+            if not name_found:
+                # Check if this is the first time that the person is talking to the robot
+
+                name = query
+                name_found = True
+                load_memory(name, conversation)
             output = conversation.run(query)
             # display
             print(output)
 
 if __name__ == "__main__":
     main()
+
+
+
+"""
+
+
+"""
