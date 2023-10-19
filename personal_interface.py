@@ -4,6 +4,8 @@ from langchain.chains import ConversationChain
 from memory_module import MemoryModule
 from langchain.prompts.prompt import PromptTemplate
 
+# NOTE: the template, llm, and memory are chained together in a conversation chain when reacting to the humans
+
 # OpenAI API key
 os.environ["OPENAI_API_KEY"]="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"
 
@@ -17,6 +19,7 @@ class Interface:
         # Will be changed later in the program
         self.name = None
         self.conversation = None
+        self.memory = None
 
     def creat_conv_chain(self, mem):
         self.conversation = ConversationChain(
@@ -30,7 +33,7 @@ class Interface:
         self.name = name
 
     def save_conv(self):
-        self.memory_module.save(self.conversation, self.name)
+        self.memory_module.save(self.memory, self.name)
 
     # TODO: set up the interface so that the first thing the llm asks for is your name. Then, load in the appropriate
     # memory from the memory module
@@ -43,45 +46,23 @@ class Interface:
         self.save_name(name)
 
         # Load appropriate memory module
-        memory = self.memory_module.get_memory(name)
+        self.memory = self.memory_module.get_memory(name)
         
         # Activate conversation chain
-        self.creat_conv_chain(memory)
+        self.creat_conv_chain(self.memory)
         print("Hello! I'm Dobby. How can I help you?") # TODO: change how this is formatted
         while (True):
-            # put this in loop
             query = str(input())
-
             if query == 'quit':
                 print('Goodbye!')
-
-                # Save memory
-                self.save_conv()
+                self.save_conv() # Save memory
                 break
             else:
-                # # Load in the memory file associated with the person if this is the conversation start
-                # if not name_found:
-                #     # Check if this is the first time that the person is talking to the robot
-
-                #     name = query
-                #     name_found = True
-                #     load_memory(name, conversation)
                 output = self.conversation.run(query)
                 print(output)
 
 # take an input
 # plug input into chain with memories while adding input into memory
-
-# NOTE: the template, llm, and memory are chained together in a conversation chain when reacting to the humans
-
-
-# PROMPT = PromptTemplate(input_variables=["history", "input"], template=template)
-# conversation = ConversationChain(
-#     prompt=PROMPT,
-#     llm=llm,
-#     verbose=True,
-#     memory=memory,
-# )
 
 def main():
     # Initialize the large language model
