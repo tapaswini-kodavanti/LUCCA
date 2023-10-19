@@ -10,22 +10,24 @@ from langchain.prompts.prompt import PromptTemplate
 os.environ["OPENAI_API_KEY"]="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"
 
 class Interface:
-    def __init__(self, llm, template, input_variables):
+    def __init__(self, llm):
         self.llm = llm
-        self.template = template
-        self.prompt = PromptTemplate(input_variables = input_variables, template = self.template)
         self.memory_module = MemoryModule()
 
         # Will be changed later in the program
+        self.template = None
+        self.prompt = None
         self.name = None
         self.conversation = None
         self.memory = None
 
-    def creat_conv_chain(self, mem):
+    def creat_conv_chain(self, name):
+        self.memory = self.memory_module.get_memory(name)
+        self.prompt = self.memory_module.get_prompt(name)
         self.conversation = ConversationChain(
             prompt = self.prompt,
             llm = self.llm,
-            memory = mem, 
+            memory = self.memory, 
             verbose = True
         )
 
@@ -44,22 +46,34 @@ class Interface:
         # Ask for name
         name = input("Hi! What is your name? ")
         self.save_name(name)
-
-        # Load appropriate memory module
-        self.memory = self.memory_module.get_memory(name)
         
         # Activate conversation chain
-        self.creat_conv_chain(self.memory)
-        print("Hello! I'm Dobby. How can I help you?") # TODO: change how this is formatted
-        while (True):
+        self.creat_conv_chain(name)
+
+        print("++++++ PRINTING PROMPT ++++++")
+        print(self.prompt)
+        # print("Hello! I'm Dobby. How can I help you?") # TODO: change how this is formatted
+
+        # while (True):
+        #     query = str(input())
+        #     if query == 'quit':
+        #         print('Goodbye!')
+        #         self.save_conv() # Save memory
+        #         break
+        #     else:
+        #         output = self.conversation.run(query)
+        #         print(output)
+
+        print(self.conversation.run("Hi, this is " + name + "!"))
+        query = str(input())
+        while (query != 'quit'):
+            output = self.conversation.run(query)
+            print(output)
             query = str(input())
-            if query == 'quit':
-                print('Goodbye!')
-                self.save_conv() # Save memory
-                break
-            else:
-                output = self.conversation.run(query)
-                print(output)
+
+        print("Goodbye!")
+        self.save_conv()
+
 
 # take an input
 # plug input into chain with memories while adding input into memory
@@ -69,21 +83,11 @@ def main():
     llm = OpenAI(
         temperature=0,
         openai_api_key="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",
-        model_name="text-davinci-003"
+        model_name="gpt-3.5-turbo-0613"
     )
 
-    # Initialize the starting template
-    template = """The following is a friendly conversation between a human and an AI. The AI is talkative and 
-    \\ provides lots of specific details from its context. If the AI does not know the answer to a question, 
-    \\ it truthfully says it does not know.\n
-        Current conversation: {history}
-        Human: {input}
-        Dobby:
-    """
-    input_variables = ["history", "input"]
-
     # Start up the interface
-    interface = Interface(llm, template, input_variables)
+    interface = Interface(llm)
     interface.run_interface()
 
 
