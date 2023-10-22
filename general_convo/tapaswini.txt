@@ -46,3 +46,50 @@ person: thanks for listening
 ai: You're welcome! I'm always here to listen. How have things been going for you since the game?
 
 
+2023-10-21
+person: Hi, this is tapaswini!
+ai: Hello Tapaswini! How can I assist you today? How have things been going for you since your volleyball game?
+person: they've been going pretty well! I have an assignment due later today though. 
+ai: That's great to hear that things have been going well! Good luck with your assignment due later today. Is there anything I can do to help?
+person: can you tell me about the sun?
+ai: The sun is a star at the center of our solar system. It provides heat and light to Earth and is essential for life. It is a massive ball of hot gas, primarily composed of hydrogen and helium. The sun's energy is generated through nuclear fusion, where hydrogen atoms combine to form helium, releasing a tremendous amount of energy in the process. The sun's surface temperature is around 5,500 degrees Celsius (9,932 degrees Fahrenheit), while its core temperature reaches millions of degrees. It takes about 8 minutes and 20 seconds for sunlight to reach Earth. Is there anything specific you'd like to know about the sun?
+person: Can you tell me about the AHG?
+ai: I'm sorry, but I don't have any information about the AHG. Is there anything else I can help you with?
+person: That's it. thank you!
+ai: You're welcome! I'm glad things have been going well for you. Good luck with your assignment! If you have any more questions or need assistance, feel free to ask.
+
+
+2023-10-21
+person: Hi, this is tapaswini!
+ai: Hello Tapaswini! How can I assist you today? How have things been going for you since your last conversation?
+person: they've been going ok. I'm still working on the assignment though. 
+ai: That's understandable. Assignments can take some time. How's the progress going? Is there anything specific you need help with?
+person: No, nothing you can help with.
+ai: No problem, Tapaswini! Take your time with the assignment. If you need any assistance in the future, feel free to reach out. Good luck!
+
+
+2023-10-21
+person: Hi, this is tapaswini!
+ai: Hello Tapaswini! How can I assist you today? How have things been going for you since your last conversation?
+person: well! I'm still working on the assignment
+ai: That's great to hear, Tapaswini! How's the progress going with your assignment? Is there anything specific you need help with?
+
+
+The following information is about a conversatoin between the AI and the person on 21/10/2023 at 19:15:55person: Hi, this is tapaswini!
+ai: Hello Tapaswini! How can I assist you today? How's the progress going with your assignment? Is there anything specific you need help with?
+person: hi
+ai: Hello Tapaswini! How's the assignment coming along? Do you need any assistance with it?
+
+
+* Conversation on 21/10/2023 at 19:34:45
+person: Hi, this is tapaswini!
+ai: Hello Tapaswini! How's everything going? How's the assignment coming along? Do you need any assistance with it?
+person: no
+ai: No problem, Tapaswini! Let me know if you need any help with your assignment. Is there anything else you'd like to chat about?
+
+
+* Conversation on 21/10/2023 at 20:20:58
+person: Hi, this is tapaswini!
+ai: Hello Tapaswini! How's everything going? How's the assignment coming along? Do you need any assistance with it? Is there anything else you'd like to chat about?
+
+

@@ -7,7 +7,7 @@ from langchain.llms import OpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationSummaryMemory, ChatMessageHistory
 from langchain.prompts.prompt import PromptTemplate
-from datetime import date
+from datetime import datetime
 import langchain
 import pickle
 import os
@@ -16,6 +16,8 @@ class MemoryModule:
     input_variables = ["history", "input"]
     def __init__(self):
         print('creating memory module object')
+        self.prompt = None
+        self.memory = None
 
     def get_memory(self, name):
         # Task 2: return a last conversation populate memory object
@@ -53,52 +55,54 @@ class MemoryModule:
 
         return PromptTemplate(input_variables = self.input_variables, template = new_template)
 
+    def get_conv_chain(self, name, llm):
+        self.prompt = self.get_prompt(name)
+        self.memory = self.get_memory(name)
+        conversation = ConversationChain(
+            prompt = self.prompt,
+            llm = llm,
+            memory = self.memory, 
+            verbose = True
+        )
 
+        return conversation
 
-    def save(self, memory, name):
+    # Returns a retriever object for personal memory
+    def get_personal_retriever(self):
+        file_name = "general_convo/" + name + ".txt"
+        memory_exists = os.path.isfile(file_name)
+        if memory_exists:
+            loader = TextLoader(file_name)
+            documents = loader.load()
+
+            text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+            documents = text_splitter.split_documents(documents)
+            embeddings = OpenAIEmbeddings()
+            vectorstore = Chroma.from_documents(documents, embeddings)
+            return vectorstore
+        else:
+            return None
+
+    def save(self, name):
         print("saving conversation")
 
         # STEP 1: Append the conversation directly to the general conversation memory
-        history = memory.load_memory_variables({})['history']
-        today = date.today()
+        history = self.memory.load_memory_variables({})['history']
+        timestamp = datetime.now().strftime("%d/%m/%Y at %H:%M:%S")
 
         # Opening file
-        print("PRINTING INFORMATION FOR PERSON " + name + " ON THE DATE OF " + str(today))
+        print("PRINTING INFORMATION FOR PERSON " + name + " ON THE DATE OF " + str(timestamp))
         file_name = "general_convo/" + name + ".txt"
-        self.write_memory(history, today, file_name, "a")
-        # file = open(file_name, "a")
-        # file.write(str(today) + "\n")
-        
-        # for message in history:
-        #     m_type = type(message)
-        #     if isinstance(message, langchain.schema.messages.HumanMessage):
-        #         file.write("person: ")
-        #     else:
-        #         file.write("ai: ")
-        #     file.write(message.content)
-        #     file.write("\n")
-        # file.write("\n\n")
+        self.write_memory(history, timestamp, file_name, "a")
 
         # STEP 2: Override the stored memory in the last conversation file
         file_name = "last_convo/" + name + ".txt"
-        self.write_memory(history, today, file_name, "w")
-        # file = open(file_name, "w")
-        # file.write(str(today) + "\n")
-
-        # for message in history:
-        #     m_type = type(message)
-        #     if isinstance(message, langchain.schema.messages.HumanMessage):
-        #         file.write("person: ")
-        #     else:
-        #         file.write("ai: ")
-        #     file.write(message.content)
-        #     file.write("\n")
-        # file.write("\n\n")
+        self.write_memory(history, timestamp, file_name, "w")
 
     
-    def write_memory(self, history, today, file_name, permissions):
+    def write_memory(self, history, timestamp, file_name, permissions):
         file = open(file_name, permissions)
-        file.write(str(today) + "\n")
+        file.write("* Conversation on " + str(timestamp) + "\n")
 
         for message in history:
             m_type = type(message)
@@ -109,16 +113,3 @@ class MemoryModule:
             file.write(message.content)
             file.write("\n")
         file.write("\n\n")
-
-
-
-        
-        # Task 3:
-        # Only ask about the last conversation, meaning store the last conversation as natural language
-        # directly in another file
-
-        # Task 4: 
-        # Figure out how to store declarative memory (one part for last conversation, one part for summarized info)
-        # May just end up using a hashmap type of structured database...
-        # Use vectorstores and semantic search over the stored information texts
-
