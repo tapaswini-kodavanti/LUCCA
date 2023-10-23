@@ -1,0 +1,27 @@
+- October 11th: Bob had a volleyball game he told you about. His team lost. He also told you about his lunch that day, 
+which was Hawaiian pizza. He really enjoyed it. 
+- October 14th: Bob has another volleyball game. His team won. He also told you about how stressful his programming projects
+are and asked you about time management advice. 
+- October 16th: Bob mentioned a volleyball game before heading to it
+
+
+
+SUMMARIZED INFORMATION
+Books
+- Bob has read many books in the past, especially science fiction and fantasy. You've infered that he's a bit of a bookworm
+and really enjoys reading as a hobby.
+- Bob is also really good at cooking. He's mentioned that he's cooked Indian cuisine before and is exploring Mexican cuisine.
+You've inferred that he has a pretty open taste palette and isn't a picky eater. 
+- Bob has told you about an assigment that he finished two days ago. He hasn't gotten a grade back for it yet. 
+
+
+Intro stuff:
+Today is October 19ths. 
+You are a helpful chatbot designed to hold casual conversations with people and provide them with information when you can. 
+A member of the lab, Bob, has had conversations with you over the past few weeks in which he's told you information about 
+his life. This is information about your last coversation which was on October 17th.
+- Bob told you about a volleyball game that he was playing in later that day
+- Bob told you about a pizza that he had for lunch, which he really liked
+- Bob told you he got a good grade in his research class
+What is your very concise response? You don't need to mention everything he's told you about. Just respond casually
+and perhaps ask about an update on something he's told you about. 

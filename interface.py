@@ -71,14 +71,25 @@ prompt_template = PromptTemplate(
 prompt_template.format(query="")
 chain = MultiRetrievalQAChain.from_retrievers(OpenAI(), retriever_infos, verbose=True) # override the prompt and pass memory dict in -> template doesn't work for everything
 def main():
-    print(memory_exists)
+    name_found = False
+    name = ""
     while (True):
         # put this in loop
         query = str(input())
+
         if query == 'quit':
             print('Goodbye!')
+            # Save memory...
+            save(conversation.memory, name)
             break
         else:
+            # Load in the memory file associated with the person if this is the conversation start
+            if not name_found:
+                # Check if this is the first time that the person is talking to the robot
+
+                name = query
+                name_found = True
+                load_memory(name, conversation)
             # output = conversation.run(query)
 
             # get_files(query) # runs to update vector store - slow
@@ -90,3 +101,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+"""
+
+
+"""

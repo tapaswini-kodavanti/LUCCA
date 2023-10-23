@@ -1,0 +1,9 @@
+2023-10-19
+person: what is the capital of canada?
+ai: 
+        The capital of Canada is Ottawa. It is located in the province of Ontario and is the fourth largest city in the country. It is home to the Parliament of Canada and is the political center of the country.
+person: can you tell me about the Philippines?
+ai: 
+        Sure! The Philippines is an archipelagic country located in Southeast Asia. It is composed of more than 7,000 islands and is the world's 12th most populous country. The capital of the Philippines is Manila, which is the most densely populated city in the world. The official language is Filipino, which is based on the Tagalog language.
+
+
