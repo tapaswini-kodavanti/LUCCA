@@ -1,15 +1,11 @@
-import os
-os.environ["OPENAI_API_KEY"]="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"
-
 from langchain.llms import OpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationChain
-from memory_module import memory_exists, memory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
-# from fact_retrieval import get_files, vectorstore
 from langchain.chains.router import MultiRetrievalQAChain
 from fact_retrieval import FactRetrieval
+from memory_module import *
 
 # first initialize the large language model
 llm = ChatOpenAI(
@@ -30,12 +26,12 @@ template = """The following is a friendly conversation between a human and an AI
     Dobby:
 """
 PROMPT = PromptTemplate(input_variables=["history", "input"], template=template)
-conversation = ConversationChain(
-    prompt=PROMPT,
-    llm=llm,
-    verbose=True,
-    memory=memory,
-)
+# conversation = ConversationChain(
+#     prompt=PROMPT,
+#     llm=llm,
+#     verbose=True,
+#     memory=memory,
+# )
 
 _template = """Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
 
