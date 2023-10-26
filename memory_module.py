@@ -4,14 +4,16 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.document_loaders import TextLoader
+from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationSummaryMemory, ChatMessageHistory
 from langchain.prompts.prompt import PromptTemplate
 from datetime import datetime
 import langchain
+import pickle
 import os
 
 class MemoryModule:
-    input_variables = ["history", "input"]
+    input_variables = ["chat_history", "input"]
     def __init__(self):
         print('creating memory module object')
         self.prompt = None
@@ -19,7 +21,7 @@ class MemoryModule:
 
     def get_memory(self, name):
         # Task 2: return a last conversation populate memory object
-        return ConversationBufferMemory(return_messages=True, ai_prefix="Dobby")
+        return ConversationBufferMemory(return_messages=True, ai_prefix="Dobby", memory_key="chat_history")
 
     def get_prompt(self, name):
         memory_exists = os.path.isfile("last_convo/" + name + ".txt")
@@ -47,7 +49,7 @@ class MemoryModule:
             new_template += ""
 
 
-        new_template += "Current conversation: {history} \
+        new_template += "Current conversation: {chat_history} \
                     Human: {input} \
                     Dobby: "
 
@@ -64,13 +66,13 @@ class MemoryModule:
         )
 
         return conversation
-
-    def init_memory(self, name):
+    
+    def init_memory(self, name, llm):
         self.prompt = self.get_prompt(name)
         self.memory = self.get_memory(name)
 
     # Returns a retriever object for personal memory
-    def get_personal_retriever(self):
+    def get_personal_retriever(self, name):
         file_name = "general_convo/" + name + ".txt"
         memory_exists = os.path.isfile(file_name)
         if memory_exists:
@@ -89,7 +91,7 @@ class MemoryModule:
         print("saving conversation")
 
         # STEP 1: Append the conversation directly to the general conversation memory
-        history = self.memory.load_memory_variables({})['history']
+        history = self.memory.load_memory_variables({})['chat_history']
         timestamp = datetime.now().strftime("%d/%m/%Y at %H:%M:%S")
 
         # Opening file

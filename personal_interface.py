@@ -3,7 +3,6 @@ from langchain.llms import OpenAI
 from memory_module import MemoryModule
 from langchain.chat_models import ChatOpenAI
 from fact_retrieval import FactRetrieval
-from custom_chain import CustomChain
 from langchain.agents.agent_toolkits import create_retriever_tool
 from langchain.agents.agent_toolkits import create_conversational_retrieval_agent
 from langchain.agents import AgentExecutor

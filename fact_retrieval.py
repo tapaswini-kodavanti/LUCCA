@@ -22,11 +22,11 @@ class FactRetrieval:
     )
     
     def __init__(self) -> None:
-        self.retriever_infos = [{
-            "name": "anna hiss gymnasium",
-            "description": "good for answering ut austin lab related questions",
-            "retriever": self.retrieval.vectorstore.as_retriever()
-        }]
+        # self.retriever_infos = [{
+        #     "name": "anna hiss gymnasium",
+        #     "description": "good for answering ut austin lab related questions",
+        #     "retriever": self.retrieval.vectorstore.as_retriever()
+        # }]
         print("initializing fact retrieval")
 
     def get_file_names(self):

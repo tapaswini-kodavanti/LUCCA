@@ -68,3 +68,14 @@ person: thank you!
 ai: You're welcome! If you have any more questions or need further assistance, feel free to ask. I'm here to help!
 
 
+* Conversation on 26/10/2023 at 12:02:07
+person: Hi, this is Emerald!
+ai: Hello Emerald! How can I assist you today?
+person: what was our last conversation about?
+ai: Our last conversation was about how I can assist you. Is there something specific you would like help with?
+person: did I ever ask about the ahg?
+ai: Agent stopped due to iteration limit or time limit.
+person: Thank you dobby!
+ai: Thank you for your message! How can I assist you today?
+
+
