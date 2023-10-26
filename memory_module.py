@@ -3,13 +3,11 @@ from langchain.memory import ConversationBufferMemory
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.llms import OpenAI
-from langchain.chains import ConversationalRetrievalChain
+from langchain.document_loaders import TextLoader
 from langchain.memory import ConversationSummaryMemory, ChatMessageHistory
 from langchain.prompts.prompt import PromptTemplate
 from datetime import datetime
 import langchain
-import pickle
 import os
 
 class MemoryModule:
@@ -66,6 +64,10 @@ class MemoryModule:
         )
 
         return conversation
+
+    def init_memory(self, name):
+        self.prompt = self.get_prompt(name)
+        self.memory = self.get_memory(name)
 
     # Returns a retriever object for personal memory
     def get_personal_retriever(self):

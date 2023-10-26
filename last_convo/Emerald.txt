@@ -1,0 +1,13 @@
+* Conversation on 25/10/2023 at 20:18:08
+person: Hi, this is Emerald!
+ai: Hello Emerald! How can I assist you today?
+person: What was our last conversation about?
+ai: Our last conversation was about how I can assist you. Is there something specific you would like help with?
+person: what is the ahg?
+ai: The AHG, or Anna Hiss Gymnasium, is a building located at the University of Texas at Austin. The AHG adaptive reuse project began planning in January 2017 and was completed in June 2021. The focus of the project was to repair and rehabilitate the entire building, including the roof and windows, to support the university's partnership with the Army Futures Command modernization program, as well as research and academic programs for Texas Robotics and the College of Fine Arts. Many features of the original building were preserved to maintain its historic accuracy. The building is now fully operational and ongoing research is taking place there.
+
+If you have any specific questions about the AHG or would like more information, feel free to ask!
+person: thank you!
+ai: You're welcome! If you have any more questions or need further assistance, feel free to ask. I'm here to help!
+
+

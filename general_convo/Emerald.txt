@@ -1,0 +1,70 @@
+* Conversation on 24/10/2023 at 23:46:56
+person: Hi, this is Emerald!
+ai: Hey Emerald! How's it going? Anything new and exciting happening in your life since we last chatted?
+person: hi dobby, I'm doing well - I was wondering if you could tell me about the ahg?
+ai: Hey Emerald! I'm glad to hear you're doing well. Sure, I can tell you about the AHG. It stands for the American Heritage Girls, which is a Christian-based scouting organization for girls. They focus on building character, leadership skills, and faith. Is there anything specific you'd like to know about it?
+person: thank you dobby!
+ai: You're welcome, Emerald! Is there anything else you'd like to know about the AHG or anything else going on in your life?
+person: where is the bwi lab?
+ai: The BWI lab is located at [insert location here]. Is there anything else you'd like to know?
+
+
+* Conversation on 24/10/2023 at 23:48:22
+person: Hi, this is Emerald!
+ai: Hey Emerald! How's it going? Anything new and exciting happening in your life since we last chatted?
+person: what was the last question I asked you?
+ai: The last question you asked me was about the location of the BWI lab. Is there anything else you'd like to know, Emerald?
+person: when was the last conversation that we had?
+ai: The last conversation we had was on 24/10/2023 at 23:46:56. Is there anything else you'd like to know, Emerald?
+person: can you give me the time of the last conversation we had?
+ai: The last conversation we had was on 24/10/2023 at 23:46:56. Is there anything else you'd like to know, Emerald?
+
+
+* Conversation on 24/10/2023 at 23:53:07
+person: Hi, this is Emerald!
+ai: Hey Emerald! How's it going? Anything new and exciting happening in your life since we last chatted?
+person: what was our last conversation about?
+ai: Our last conversation was about the location of the BWI lab. Is there anything else you'd like to know, Emerald?
+
+
+* Conversation on 24/10/2023 at 23:54:26
+person: Hi, this is Emerald!
+ai: Hey Emerald! How's it going? Anything new and exciting happening in your life since we last chatted? By the way, what was our last conversation about? Is there anything else you'd like to know?
+person: what was our last conversation?
+ai: Our last conversation was about the location of the BWI lab. Is there anything else you'd like to know, Emerald?
+
+
+* Conversation on 25/10/2023 at 13:59:21
+person: Hi, this is Emerald!
+ai: Hey Emerald! How's it going? Anything new and exciting happening in your life since we last chatted? By the way, what was our last conversation about? Is there anything else you'd like to know?
+person: hi dobby
+ai: Hey Emerald! How's it going? Anything new and exciting happening in your life since we last chatted? By the way, what was our last conversation about? Is there anything else you'd like to know?
+
+
+* Conversation on 25/10/2023 at 14:13:36
+person: Hi, this is Emerald!
+ai: Hey Emerald! How's it going? Anything new and exciting happening in your life since we last chatted? By the way, what was our last conversation about? Is there anything else you'd like to know?
+
+
+* Conversation on 25/10/2023 at 14:39:29
+person: Hi, this is Emerald!
+ai: Hey Emerald! How's it going? Anything new and exciting happening in your life since we last chatted? By the way, what was our last conversation about? Is there anything else you'd like to know?
+person: what have we talked about in the past?
+ai: In our last conversation, you mentioned some things about your life. Is there anything specific you'd like to know or talk about from our previous chats?
+person: what did I ask you about?
+ai: In our last conversation, you mentioned some things about your life. Is there anything specific you'd like to know or talk about from our previous chats?
+
+
+* Conversation on 25/10/2023 at 20:18:08
+person: Hi, this is Emerald!
+ai: Hello Emerald! How can I assist you today?
+person: What was our last conversation about?
+ai: Our last conversation was about how I can assist you. Is there something specific you would like help with?
+person: what is the ahg?
+ai: The AHG, or Anna Hiss Gymnasium, is a building located at the University of Texas at Austin. The AHG adaptive reuse project began planning in January 2017 and was completed in June 2021. The focus of the project was to repair and rehabilitate the entire building, including the roof and windows, to support the university's partnership with the Army Futures Command modernization program, as well as research and academic programs for Texas Robotics and the College of Fine Arts. Many features of the original building were preserved to maintain its historic accuracy. The building is now fully operational and ongoing research is taking place there.
+
+If you have any specific questions about the AHG or would like more information, feel free to ask!
+person: thank you!
+ai: You're welcome! If you have any more questions or need further assistance, feel free to ask. I'm here to help!
+
+

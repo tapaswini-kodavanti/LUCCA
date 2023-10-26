@@ -1,3 +1,6 @@
+import os
+os.environ["OPENAI_API_KEY"]="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"
+
 from langchain.llms import OpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationChain
@@ -5,6 +8,7 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain.chains.router import MultiRetrievalQAChain
 from fact_retrieval import FactRetrieval
+from custom_chain import CustomChain
 from memory_module import *
 
 # first initialize the large language model
@@ -26,24 +30,10 @@ template = """The following is a friendly conversation between a human and an AI
     Dobby:
 """
 PROMPT = PromptTemplate(input_variables=["history", "input"], template=template)
-# conversation = ConversationChain(
-#     prompt=PROMPT,
-#     llm=llm,
-#     verbose=True,
-#     memory=memory,
-# )
-
-_template = """Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
-
-Chat History:
-{chat_history}
-Follow Up Input: {question}
-Standalone question:"""
-CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(_template)
 retrieval = FactRetrieval()
 
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-qa = ConversationalRetrievalChain.from_llm(llm, retrieval.vectorstore.as_retriever(search_kwargs={'k': 3}), condense_question_prompt=CONDENSE_QUESTION_PROMPT, memory=memory)
+# qa = ConversationalRetrievalChain.from_llm(llm, retrieval.vectorstore.as_retriever(search_kwargs={'k': 3}), condense_question_prompt=CONDENSE_QUESTION_PROMPT, memory=memory)
 # issue might have to load chroma every time - find a way around this
 chat_history = []
 
@@ -52,7 +42,7 @@ retriever_infos = [
         "name": "anna hiss gymnasium",
         "description": "good for answering ut austin lab related questions",
         "retriever": retrieval.vectorstore.as_retriever()
-    },
+    }
 ]
 
 prompt_template = PromptTemplate(
@@ -63,9 +53,15 @@ prompt_template = PromptTemplate(
         Respond to this accordingly. 
     '''
 )
+conversation = MemoryModule()
 
-prompt_template.format(query="")
-chain = MultiRetrievalQAChain.from_retrievers(OpenAI(), retriever_infos, verbose=True) # override the prompt and pass memory dict in -> template doesn't work for everything
+# chain = MultiRetrievalQAChain.from_retrievers(
+#         llm,
+#         retriever_infos, 
+#         default_chain=conversation.get_conv_chain(),
+#         verbose=True
+# ) # override the prompt and pass memory dict in -> template doesn't work for everything
+
 def main():
     name_found = False
     name = ""
@@ -76,7 +72,7 @@ def main():
         if query == 'quit':
             print('Goodbye!')
             # Save memory...
-            save(conversation.memory, name)
+            conversation.save(conversation.memory, name)
             break
         else:
             # Load in the memory file associated with the person if this is the conversation start
@@ -85,13 +81,18 @@ def main():
 
                 name = query
                 name_found = True
-                load_memory(name, conversation)
+                # load_memory(name, conversation)
             # output = conversation.run(query)
 
             # get_files(query) # runs to update vector store - slow
             # output = qa({"question": query})
+            retriever_infos.append({
+                "name": "personal memories",
+                "description": "good for answering questions about people dobby has interacted with",
+                "retriever": conversation.get_personal_retriever(name)
+            })
             prompt_template.format(query=query)
-            output = chain.run(query)
+            output = conversation.chain.run(query)
             # display
             print(output)
 

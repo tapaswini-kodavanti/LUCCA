@@ -9,7 +9,10 @@ import os
 import chromadb
 
 class FactRetrieval:
-    embeddings = OpenAIEmbeddings()
+    retriever_infos = None
+    embeddings = OpenAIEmbeddings(	
+        openai_api_key="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",
+    )
     client = chromadb.PersistentClient('chroma_db')
     collection = client.get_or_create_collection("dobby_v1")
     vectorstore = Chroma(
@@ -19,7 +22,11 @@ class FactRetrieval:
     )
     
     def __init__(self) -> None:
-
+        self.retriever_infos = [{
+            "name": "anna hiss gymnasium",
+            "description": "good for answering ut austin lab related questions",
+            "retriever": self.retrieval.vectorstore.as_retriever()
+        }]
         print("initializing fact retrieval")
 
     def get_file_names(self):
