@@ -80,7 +80,7 @@ class MemoryModule:
         file_name = "general_convo/" + name + ".txt"
         memory_exists = os.path.isfile(file_name)
         if memory_exists:
-            loader = TextLoader(file_name)
+            loader = TextLoader(file_name) # TODO: load the summarized version here too?
             documents = loader.load()
 
             text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
