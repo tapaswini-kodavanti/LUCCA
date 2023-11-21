@@ -9,15 +9,18 @@ from langchain.memory import ConversationSummaryMemory, ChatMessageHistory
 from langchain.prompts.prompt import PromptTemplate
 from datetime import datetime
 import langchain
-import pickle
+import re
 import os
 
 class MemoryModule:
+    STM_LIMIT=50
     input_variables = ["chat_history", "input"]
     def __init__(self):
         print('creating memory module object')
         self.prompt = None
         self.memory = None
+        self.summarizer = None
+
 
     def get_memory(self, name):
         # Task 2: return a last conversation populate memory object
@@ -58,6 +61,7 @@ class MemoryModule:
     def get_conv_chain(self, name, llm):
         self.prompt = self.get_prompt(name)
         self.memory = self.get_memory(name)
+        self.summarizer = ConversationSummaryMemory(llm=llm)
         conversation = ConversationChain(
             prompt = self.prompt,
             llm = llm,
@@ -117,3 +121,42 @@ class MemoryModule:
             file.write(message.content)
             file.write("\n")
         file.write("\n\n")
+
+    def summarize_memory(self, file_name, text, permissions):
+        # summarize memory -> option 1 summarize entire file, option 2 summarize entire conversaton
+        self.parse_conversation(text)
+        # store in long-term
+        file = open(file_name, permissions)
+        for interaction in self.summarizer.chat_memory:
+            if isinstance(interaction, langchain.schema.messages.SystemMessage):
+                file.write("summary: ")
+            file.write(interaction.content)
+            file.write("\n")
+        file.write("\n\n")
+
+        # clear general_convo
+        open(file_name, "w").close()
+        
+    def parse_conversation(self, text):
+        # Split the text into lines
+        lines = text.strip().split('\n')
+        
+        # Initialize variables to store input-output tuples
+        current_tuple = {'input': '', 'output': ''}
+
+        for line in lines:
+            # Extract date
+            if re.match(r'\d{4}-\d{2}-\d{2}', line):
+                current_tuple['date'] = line
+            else:
+                # Split the line into speaker and message
+                speaker, message = map(str.strip, line.split(':', 1))
+                
+                # Determine if it's an input or output
+                if speaker.lower() == 'person':
+                    current_tuple['input'] += message + ' '
+                elif speaker.lower() == 'ai':
+                    current_tuple['output'] += message + ' '
+
+        # Append the last tuple
+        self.summarizer.save_context({'input': current_tuple['input'].strip()}, {'output': current_tuple['output'].strip()})

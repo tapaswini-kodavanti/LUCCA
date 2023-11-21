@@ -67,7 +67,9 @@ class Interface:
             tools=self.tools, 
             verbose=True, 
             memory=self.memory_module.memory, 
-            handle_parsing_errors=True)
+            handle_parsing_errors=True,
+            max_execution_time=1,
+            early_stopping_method="generate")
 
 
     def save_conv(self):
