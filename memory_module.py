@@ -13,7 +13,7 @@ import re
 import os
 
 class MemoryModule:
-    STM_LIMIT=50
+    STM_LIMIT=50 # TODO: use this
     input_variables = ["chat_history", "input"]
     def __init__(self):
         print('creating memory module object')
