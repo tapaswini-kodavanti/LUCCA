@@ -13,7 +13,6 @@ import os
 
 memory_exists = os.path.isfile("saved_memory.txt")
 if memory_exists:
-  print("Opening")
   memory_file = open("saved_memory.txt", "rb")
   saved_mem = memory_file.read()
   memory = pickle.loads(saved_mem)
@@ -40,7 +39,6 @@ def manage_mem():
   # migrate to level2 -> summarize then cluster by similarity
   for i in range(0, len(history), 2): #assumes input and output go one after the other
     memory_two.save_context({'input': history[i].content}, {'outputs': history[i+1].content})
-  print("Should be managing memory now")
 
 def clear():
   memory.clear()
