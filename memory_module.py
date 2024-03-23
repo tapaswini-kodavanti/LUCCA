@@ -29,13 +29,13 @@ class MemoryModule:
     def get_prompt(self, name):
         memory_exists = os.path.isfile("last_convo/" + name + ".txt")
         
-        # TODO: change this
-        new_template = "You are a helpful chatbot designed to hold casual conversations with people and provide them with \
+        new_template = "You are a helpful chatbot, LUCCA, designed to hold casual conversations with people and provide them with \
             information when you can. A member of the lab, " + name + ", has had conversations with you over the past few weeks \
             in which they've told you information about their life. I will provide information about the previous conversation. \
             What is your very concise response? You don't need to mention everything they've told you about. Just respond \
             casually and perhaps ask about an update on something they've told you about. \
             Previous conversation: "
+            
         test_template = "The following is a friendly conversation between a human and an AI. The AI is talkative and \
             provides lots of specific details from its context. If the AI does not know the answer to a question, \
             it truthfully says it does not know.\n \
